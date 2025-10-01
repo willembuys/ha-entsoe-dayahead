@@ -1,4 +1,4 @@
-"""ENTSO-e current electricity and gas price information service."""
+"""ENTSO-e current electricity price information service."""
 
 from __future__ import annotations
 
