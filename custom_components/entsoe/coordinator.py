@@ -99,6 +99,7 @@ class EntsoeCoordinator(DataUpdateCoordinator):
     def parse_hourprices(self, hourprices):
         for hour, price in hourprices.items():
             hourprices[hour] = self.calc_price(value=price, fake_dt=hour)
+            hourprices[hour] = self.calc_price(value=price, no_template=True)
         return hourprices
 
     # ENTSO: Triggered by HA to refresh the data (interval = 60 minutes)
