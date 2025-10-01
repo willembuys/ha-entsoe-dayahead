@@ -199,12 +199,14 @@ class EntsoeCoordinator(DataUpdateCoordinator):
 
     # SENSOR: Get the current price
     def get_current_hourprice(self) -> int:
-        return self.data[dt.now().replace(minute=0, second=0, microsecond=0)]
+        now = dt.now()
+        return self.data[now.replace(minute=((now.minute // 15) * 15), second=0, microsecond=0)]`
 
-    # SENSOR: Get the next hour price
+    # SENSOR: Get the next interval price
     def get_next_hourprice(self) -> int:
+        now = dt.now()
         return self.data[
-            dt.now().replace(minute=0, second=0, microsecond=0) + timedelta(hours=1)
+            now.replace(minute=((now.minute // 15) * 15), second=0, microsecond=0) + timedelta(minutes=15)
         ]
 
     # SENSOR: Get timestamped prices of today as attribute for Average Sensor
